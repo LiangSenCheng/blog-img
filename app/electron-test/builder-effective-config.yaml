@@ -1,0 +1,21 @@
+directories:
+  output: ./dist_electron
+  buildResources: build
+  app: dist_electron/bundled
+files:
+  - filter:
+      - '**/*'
+      - build/icon.*
+extends: null
+appId: com.electron.vue.ts.dev
+productName: electron-vue-ts-dev
+copyright: electron-vue-ts-dev
+extraMetadata:
+  version: 0.0.2
+publish:
+  - provider: generic
+    url: ''
+asar: false
+electronDownload:
+  mirror: https://npm.taobao.org/mirrors/electron/
+electronVersion: 13.1.8
