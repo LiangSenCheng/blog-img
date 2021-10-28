@@ -100,7 +100,7 @@ let result = {
 
 async function frushcdn() {
   if (list.length === 0) {
-    result.failList = Array.from(new set(result.failList));
+    result.failList = Array.from(new Set(result.failList));
     result.fail = result.failList.length;
     console.log(result);
     return;
