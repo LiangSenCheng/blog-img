@@ -106,26 +106,32 @@ async function frushcdn() {
     return;
   }
   const filePath = list.shift();
+  const state = "";
   try {
-    console.log("CDN", filePath);
     // 上面的请求也可以这样做
     const res = await axios.get(`https://purge.jsdelivr.net/gh/LiangSenCheng/blog-img${filePath}`, {});
     result.time = dayjs(res.data.timestamp).tz("Asia/Shanghai").format("YYYY-MM-DD HH:MM:ss")
     if (res.status === 200) {
       if (res.data.status === "finished") {
         result.ok += 1;
+        state = "ok";
       } else {
         result.fail += 1;
+        state = "err";
         result.failList.push(filePath);
       }
     } else {
       result.fail += 1;
+      state = "err";
       result.failList.push(filePath);
     }
   } catch (err) {
     result.fail += 1;
+    state = "err";
     result.failList.push(filePath);
     console.log(err);
+  } finally {
+    console.log("CDN:", filePath, "state:", state);
   }
   // 递归调用刷新CDN方法
   frushcdn();
