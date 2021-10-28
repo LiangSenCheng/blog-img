@@ -106,7 +106,7 @@ async function frushcdn() {
     return;
   }
   const filePath = list.shift();
-  const state = "";
+  let state = "";
   try {
     // 上面的请求也可以这样做
     const res = await axios.get(`https://purge.jsdelivr.net/gh/LiangSenCheng/blog-img${filePath}`, {});
