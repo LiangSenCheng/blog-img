@@ -138,4 +138,4 @@ async function frushcdn() {
 }
 
 // 开始执行脚本
-// frushcdn();
+frushcdn();
