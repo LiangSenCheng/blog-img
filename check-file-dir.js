@@ -46,7 +46,6 @@ function fileDisplay(filePath) {
     }
     // 该路径是文件夹
     if (stats.isDirectory() && !ignorePathCheck(relativePath)) {
-      console.log(ignorePathCheck(relativePath));
       folderPathList.push(relativePath);
     }
   });
@@ -95,11 +94,14 @@ let result = {
   total: list.length,
   ok: 0, // 成功
   fail: 0, // 失败
+  failList: [], // 错误列表
   time: "",
 };
 
 async function frushcdn() {
   if (list.length === 0) {
+    result.failList = Array.from(new set(result.failList));
+    result.fail = result.failList.length;
     console.log(result);
     return;
   }
@@ -114,12 +116,15 @@ async function frushcdn() {
         result.ok += 1;
       } else {
         result.fail += 1;
+        result.failList.push(filePath);
       }
     } else {
       result.fail += 1;
+      result.failList.push(filePath);
     }
   } catch (err) {
     result.fail += 1;
+    result.failList.push(filePath);
     console.log(err);
   }
   // 递归调用刷新CDN方法
