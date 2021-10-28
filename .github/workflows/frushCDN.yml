@@ -1,27 +1,22 @@
 name: CI Test
-
 on:
   push:
     branches: [main]
-
 jobs:
   Frush-CDN:
     runs-on: ubuntu-latest
     env:
       TZ: Asia/Shanghai
-
     steps:
       - name: Checkout
         uses: actions/checkout@v2
         with:
           ref: ${{ github.head_ref }}
-
       - name: Tiny Images
         uses: namoscato/action-tinify@v1.3.2
         with:
           api_key: ${{ secrets.TINIFY_API_KEY }}
           github_token: ${{ secrets.REPO_BLOG_IMG_ACCESS_TOKEN }}
-
       - name: Run Frush CDN script
         run: |
           date -R  
