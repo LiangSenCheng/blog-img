@@ -95,7 +95,8 @@ let result = {
   ok: 0, // 成功
   fail: 0, // 失败
   failList: [], // 错误列表
-  time: "",
+  cdnOriginTime: "",
+  formateTime: "",
 };
 
 async function frushcdn() {
@@ -110,7 +111,8 @@ async function frushcdn() {
   try {
     // 上面的请求也可以这样做
     const res = await axios.get(`https://purge.jsdelivr.net/gh/LiangSenCheng/blog-img${filePath}`, {});
-    result.time = dayjs(res.data.timestamp).tz("Asia/Shanghai").format("YYYY-MM-DD HH:MM:ss")
+    result.cdnOriginTime = res.data.timestamp;
+    result.formateTime = dayjs(res.data.timestamp).tz("Asia/Shanghai").format("YYYY-MM-DD HH:MM:ss");
     if (res.status === 200) {
       if (res.data.status === "finished") {
         result.ok += 1;
