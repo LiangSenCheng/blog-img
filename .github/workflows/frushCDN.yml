@@ -16,7 +16,13 @@ jobs:
         with:
           ref: ${{ github.head_ref }}
 
-      - name: Run script
+      - name: Tiny Images
+        uses: namoscato/action-tinify@v1.3.2
+        with:
+          api_key: ${{ secrets.TINIFY_API_KEY }}
+          github_token: ${{ secrets.BLOG_IIMAGES_ACCESS_TOKEN }}
+
+      - name: Run Frush CDN script
         run: |
           date -R  
           ls -a
