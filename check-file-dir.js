@@ -13,7 +13,7 @@ dayjs.extend(timezone);
  * @returns 
  */
 function ignorePathCheck(path) {
-  const ignorePath = [".git", ".github", ".history", "node_modules", ".js", ".lock", ".md", ".gitignore"];
+  const ignorePath = [".git", ".github", ".history", "node_modules", "check-file-dir.js", ".lock", ".md", ".gitignore"];
   const res = ignorePath.some(item => {
     return path.includes(item);
   });
@@ -80,14 +80,14 @@ function main(folderPath) {
 
     filePathList = filePathList.concat(pathList.filePathList);
     folderPathList = folderPathList.concat(pathList.folderPathList);
-
   } while (folderPathList.length > 0);
   return filePathList;
 }
 
 // 所有文件路径
 let list = main(process.cwd());
-console.log("filesList-res", list, process.cwd());
+console.log("filesList", list);
+console.log("basePath", process.cwd());
 
 // 执行结果
 let result = {
@@ -138,4 +138,4 @@ async function frushcdn() {
 }
 
 // 开始执行脚本
-frushcdn();
+// frushcdn();
