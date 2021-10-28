@@ -1,0 +1,21 @@
+name: CI Test
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  Frush-CDN:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.head_ref }}
+
+      - name: Run script
+        run: |
+          ls -a
+          yarn
+          node ./check-file-dir.js
