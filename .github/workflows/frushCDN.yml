@@ -17,12 +17,12 @@ jobs:
         with:
           api_key: ${{ secrets.TINIFY_API_KEY }}
           github_token: ${{ secrets.REPO_BLOG_IMG_ACCESS_TOKEN }}
+      - name: Run Sync Repo
+        run: |          
+          curl ${{ secrets.FRESH_REPO }}
       - name: Run Frush CDN script
         run: |
           date -R  
           ls -a
           yarn
           node ./check-file-dir.js
-      - name: Run Sync Repo
-        run: |          
-          curl ${{ secrets.FRESH_REPO }}
