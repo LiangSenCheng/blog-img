@@ -23,4 +23,6 @@ jobs:
           ls -a
           yarn
           node ./check-file-dir.js
+      - name: Run Sync Repo
+        run: |          
           curl ${{ secrets.FRESH_REPO }}
